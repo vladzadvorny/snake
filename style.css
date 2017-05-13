@@ -48,6 +48,8 @@ body {
 
 .main {
     flex-grow: 1;
+    /**/
+    
 }
 
 .footer {
@@ -61,3 +63,22 @@ body {
     font-size: 14px;
 }
 
+.display {    
+    background-color: #fff;    
+}
+
+.display table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.display table td {
+    border: 1px solid #fff;
+    width: 15px;
+    height: 15px;
+    background-color: #eee;
+}
+
+.display table td.red {
+    background-color: red;
+}
