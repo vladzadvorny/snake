@@ -33,7 +33,7 @@ window.onload = function () {
         ctx.fillStyle = "Black";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText("Конец игры", width / 2, height / 2);
+        ctx.fillText("Game over", width / 2, height / 2);
     };
 
     var Block = function (col, row) {
