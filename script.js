@@ -1,31 +1,22 @@
 window.onload = function () {
-    (function () {
-        var table = document.createElement('table');
-        for (var i = 0; i < 42; i++) { //24
-            var row = table.insertRow(i);
-            for (var j = 0; j < 42; j++) {
-                row.insertCell(j);
-            }
-        }
-        document.querySelector('.display').appendChild(table);
-    })();
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var width = canvas.width;
+    var height = canvas.height;
 
-    var getPixel = function (x, y) {
-        return document.querySelector(`.display table tr:nth-child(${y + 1}) td:nth-child(${x + 1})`);
-    }
+    var blockSize = 10;
+    var widthInBlocks = width / blockSize;
+    var heightInBlocks = height / blockSize;
 
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    var score = 0;
 
-    setInterval(function () {
-        var egg = [Math.floor((Math.random() * 42)), Math.floor((Math.random() * 42))];
-        getPixel(egg[0], egg[1]).style.backgroundColor=getRandomColor();
+    drawBorder = function () {
+        ctx.fillStyle = 'Gray';
+        ctx.fillRect(0, 0, width, blockSize);
+        ctx.fillRect(0, height - blockSize, width, blockSize);
+        ctx.fillRect(0, 0, blockSize, height);
+        ctx.fillRect(width - blockSize, 0, blockSize, height);
+    };
 
-    }, 1);
+    drawBorder();
 }
