@@ -1,5 +1,6 @@
 window.onload = function () {
     var size = {x: 42, y: 24};
+    var score = 0;
 
     // Draw display
     (function () {
@@ -12,6 +13,10 @@ window.onload = function () {
         }
         document.querySelector('.display').appendChild(table);
     })();
+
+    var random = function (max) {
+        return Math.floor(Math.random() * (max + 1));
+    };
 
     var Pixel = function (x, y) {
         this.x = x;
@@ -26,20 +31,27 @@ window.onload = function () {
     Pixel.prototype.equal = function (otherPixel) {
         return this.x === otherPixel.x && this.y === otherPixel.y;
     };
+
+    var clear = function () {
+        var get = document.querySelectorAll('.display table td.red');
+        for (var i = 0; i < get.length; i++) get[i].className = '';
+    };
+
     /**
      *
      * @constructor
      */
     var Egg = function () {
-        this.position = new Pixel(10, 10);
+        this.position = new Pixel(random(size.x - 1), random(size.y) - 1);
+        // проверку на совпадение
     };
 
     Egg.prototype.draw = function () {
         this.position.show();
     };
 
-    Egg.prototype.random = function () {
-        return {x: Math.floor()}
+    Egg.prototype.move = function () {
+        this.position = new Pixel(random(size.x - 1), random(size.y - 1));
     };
 
     var Snake = function () {
@@ -49,8 +61,8 @@ window.onload = function () {
             new Pixel(5, 4)
         ];
 
-        this.direction = '→';
-        this.nextDirection = '→';
+        this.direction = 'right';
+        this.nextDirection = 'right';
     };
 
     Snake.prototype.draw = function () {
@@ -64,22 +76,78 @@ window.onload = function () {
 
         this.direction = this.nextDirection;
 
-        if (this.direction === '→')
+        if (this.direction === 'right')
             nextStep = new Pixel(head.x + 1, head.y);
-        else if (this.direction === '↓')
+        else if (this.direction === 'down')
             nextStep = new Pixel(head.x, head.y + 1);
-        else if (this.direction === '←')
+        else if (this.direction === 'left')
             nextStep = new Pixel(head.x - 1, head.y);
-        else if (this.direction === '↑')
+        else if (this.direction === 'up')
             nextStep = new Pixel(head.x, head.y - 1);
 
         if (this.fail(nextStep)) {
-            end();
+            //   end();
             return;
         }
 
         this.body.unshift(nextStep);
+
+        if (nextStep.equal(egg.position)) {
+            score++;
+            egg.move();
+        } else {
+            this.body.pop();
+        }
     };
 
+    Snake.prototype.fail = function (head) {
+        var left = (head.x + 1 === 0);
+        var top = (head.y + 1 === 0);
+        var right = (head.x === size.x);
+        var bottom = (head.y === size.y);
+        var wallFail = left || top || right || bottom;
+        var selfFail = false;
+        for (var i = 0; i < this.body.length; i++) {
+            if (head.equal(this.body[i])) {
+                selfFail = true;
+            }
+        }
+        return wallFail || selfFail;
+    };
+
+    Snake.prototype.setDirection = function (newDirection) {
+        if (this.direction === "up" && newDirection === "down")
+            return;
+        else if (this.direction === "right" && newDirection === "left")
+            return;
+        else if (this.direction === "down" && newDirection === "up")
+            return;
+        else if (this.direction === "left" && newDirection === "right")
+            return;
+
+        this.nextDirection = newDirection;
+    };
+
+    document.onkeydown = function (e) {
+        e = e || window.event;
+        var newDirection;
+
+        if (e.keyCode === 37 || e.keyCode === 65) newDirection = 'left';
+        else if (e.keyCode === 38 || e.keyCode === 87) newDirection = 'up';
+        else if (e.keyCode === 39 || e.keyCode === 68) newDirection = 'right';
+        else if (e.keyCode === 40 || e.keyCode === 83) newDirection = 'down';
+
+        if (newDirection !== undefined) snake.setDirection(newDirection);
+    };
+
+    var snake = new Snake();
+    var egg = new Egg();
+
+    var intervalId = setInterval(function () {
+        clear();
+        snake.move();
+        snake.draw();
+        egg.draw();
+    }, 200);
 
 };
