@@ -1,4 +1,5 @@
 window.onload = function () {
+    document.body.focus();
     var size = {x: 42, y: 24};
     var score = 0;
 
@@ -128,7 +129,7 @@ window.onload = function () {
         this.nextDirection = newDirection;
     };
 
-    document.onkeydown = function (e) {
+    document.body.onkeydown = function (e) {
         e = e || window.event;
         var newDirection;
 
