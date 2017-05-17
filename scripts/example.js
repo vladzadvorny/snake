@@ -18,7 +18,6 @@ window.onload = function () {
         ctx.fillRect(width - blockSize, 0, blockSize, height);
     };
 
-
     var drawScore = function () {
         ctx.font = '20px Courier';
         ctx.fillStyle = 'Black';
