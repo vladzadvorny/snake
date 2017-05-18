@@ -1,5 +1,5 @@
 window.onload = function () {
-    var size = {x: 42, y: 24};
+    var size = {x: 33, y: 20};
     var score = 0;
 
     // Draw display
@@ -109,11 +109,8 @@ window.onload = function () {
     };
 
     Snake.prototype.fail = function (head) {
-        var left = (head.x + 1 === 0);
-        var top = (head.y + 1 === 0);
-        var right = (head.x === size.x);
-        var bottom = (head.y === size.y);
-        var wallFail = left || top || right || bottom;
+        // left | top | right | bottom
+        var wallFail = (head.x + 1 === 0) || (head.y + 1 === 0) || (head.x === size.x) || (head.y === size.y);
         var selfFail = false;
         for (var i = 0; i < this.body.length; i++) {
             if (head.equal(this.body[i])) {
@@ -124,14 +121,18 @@ window.onload = function () {
     };
 
     Snake.prototype.setDirection = function (newDirection) {
-        if (this.direction === 'up' && newDirection === 'down')
+        if (this.direction === 'up' && newDirection === 'down') {
             return;
-        else if (this.direction === 'right' && newDirection === 'left')
+        }
+        else if (this.direction === 'right' && newDirection === 'left') {
             return;
-        else if (this.direction === 'down' && newDirection === 'up')
+        }
+        else if (this.direction === 'down' && newDirection === 'up') {
             return;
-        else if (this.direction === 'left' && newDirection === 'right')
+        }
+        else if (this.direction === 'left' && newDirection === 'right') {
             return;
+        }
 
         this.nextDirection = newDirection;
     };
@@ -141,13 +142,34 @@ window.onload = function () {
         e = e || window.event;
         var newDirection;
 
-        if (e.keyCode === 37 || e.keyCode === 65) newDirection = 'left';
-        else if (e.keyCode === 38 || e.keyCode === 87) newDirection = 'up';
-        else if (e.keyCode === 39 || e.keyCode === 68) newDirection = 'right';
-        else if (e.keyCode === 40 || e.keyCode === 83) newDirection = 'down';
+        if (e.keyCode === 37 || e.keyCode === 65) {
+            newDirection = 'left';
+        }
+        else if (e.keyCode === 38 || e.keyCode === 87) {
+            newDirection = 'up';
+        }
+        else if (e.keyCode === 39 || e.keyCode === 68) {
+            newDirection = 'right';
+        }
+        else if (e.keyCode === 40 || e.keyCode === 83) {
+            newDirection = 'down';
+        }
 
         if (newDirection !== undefined) snake.setDirection(newDirection);
     };
+
+    document.querySelector('.left-btn').addEventListener('touchstart', function(){
+        snake.setDirection('left');
+    }, false);
+    document.querySelector('.up-btn').addEventListener('touchstart', function(){
+        snake.setDirection('up');
+    }, false);
+    document.querySelector('.right-btn').addEventListener('touchstart', function(){
+        snake.setDirection('right');
+    }, false);
+    document.querySelector('.down-btn').addEventListener('touchstart', function(){
+        snake.setDirection('down');
+    }, false);
 
     var snake = new Snake();
     var egg = new Egg();

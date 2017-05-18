@@ -1,3 +1,4 @@
 .vs/
 .idea/
 /styles/style.css.map
+.node_modules/*
