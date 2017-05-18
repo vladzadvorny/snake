@@ -157,6 +157,6 @@ window.onload = function () {
         snake.move();
         snake.draw();
         egg.draw();
-    }, 100);
+    }, 200);
 
 };
