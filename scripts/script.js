@@ -1,5 +1,4 @@
 window.onload = function () {
-    document.body.focus();
     var size = {x: 42, y: 24};
     var score = 0;
 
@@ -43,7 +42,7 @@ window.onload = function () {
      * @constructor
      */
     var Egg = function () {
-        this.position = new Pixel(random(size.x - 1), random(size.y) - 1);
+        this.position = new Pixel(random(size.x - 1), random(size.y - 1));
         // проверку на совпадение
     };
 
@@ -129,6 +128,7 @@ window.onload = function () {
         this.nextDirection = newDirection;
     };
 
+    document.body.focus();
     document.body.onkeydown = function (e) {
         e = e || window.event;
         var newDirection;
@@ -149,6 +149,6 @@ window.onload = function () {
         snake.move();
         snake.draw();
         egg.draw();
-    }, 200);
+    }, 100);
 
 };
