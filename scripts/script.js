@@ -8,7 +8,7 @@ window.onload = function () {
         for (var i = 0; i < size.y; i++) {
             var row = table.insertRow(i);
             for (var j = 0; j < size.x; j++) {
-                row.insertCell(j);
+                row.insertCell(j).appendChild(document.createElement('div'));
             }
         }
         document.querySelector('.display').appendChild(table);
@@ -25,7 +25,7 @@ window.onload = function () {
 
     Pixel.prototype.show = function () {
         document.querySelector('.display table tr:nth-child(' + (this.y + 1) + ')'
-            + ' td:nth-child(' + (this.x + 1) + ')').classList.add('red');
+            + ' td:nth-child(' + (this.x + 1) + ')').classList.add('show');
     };
 
     Pixel.prototype.equal = function (otherPixel) {
@@ -33,7 +33,7 @@ window.onload = function () {
     };
 
     var clear = function () {
-        var get = document.querySelectorAll('.display table td.red');
+        var get = document.querySelectorAll('.display table td.show');
         for (var i = 0; i < get.length; i++) get[i].className = '';
     };
 
@@ -116,13 +116,13 @@ window.onload = function () {
     };
 
     Snake.prototype.setDirection = function (newDirection) {
-        if (this.direction === "up" && newDirection === "down")
+        if (this.direction === 'up' && newDirection === 'down')
             return;
-        else if (this.direction === "right" && newDirection === "left")
+        else if (this.direction === 'right' && newDirection === 'left')
             return;
-        else if (this.direction === "down" && newDirection === "up")
+        else if (this.direction === 'down' && newDirection === 'up')
             return;
-        else if (this.direction === "left" && newDirection === "right")
+        else if (this.direction === 'left' && newDirection === 'right')
             return;
 
         this.nextDirection = newDirection;

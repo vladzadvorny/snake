@@ -51,13 +51,23 @@ body {
   background-color: #fff; }
   .display table {
     border-collapse: collapse;
-    margin: auto; }
-  .display table td {
-    border: 1px solid #fff;
-    width: 15px;
-    height: 15px;
-    background-color: #eee; }
-  .display table td.red {
-    background-color: yellowgreen; }
+    margin: auto;
+    width: 100%; }
+    .display table td {
+      border: 1px solid #fff;
+      position: relative;
+      background-color: #eee; }
+    .display table td > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; }
+    .display table td:before {
+      content: "";
+      display: block;
+      padding-top: 100%; }
+    .display table td.show {
+      background-color: yellowgreen; }
 
 /*# sourceMappingURL=style.css.map */
