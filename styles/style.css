@@ -12,7 +12,8 @@ body {
   font: 16px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
   display: flex;
   flex-direction: column;
-  flex: auto; }
+  flex: auto;
+  background-color: #efefef; }
 
 .header, .main, .footer {
   width: 100%;
@@ -21,7 +22,8 @@ body {
   margin: 0 auto 15px;
   border: 1px solid #ddd;
   padding: 10px;
-  border-radius: 2px; }
+  border-radius: 2px;
+  background-color: #fff; }
 
 .header, .footer {
   height: 50px;
@@ -47,8 +49,21 @@ body {
     color: #999;
     font-size: 14px; }
 
+.bar {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between; }
+  .bar .score, .bar .time {
+    margin-bottom: 7px; }
+  .bar .score {
+    margin-left: 5px; }
+  .bar .time {
+    margin-right: 5px; }
+
 .display {
-  background-color: #fff; }
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px; }
   .display table {
     border-collapse: collapse;
     margin: auto;

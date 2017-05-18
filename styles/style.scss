@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: auto;
+  background-color: #efefef;
 }
 
 .header, .main, .footer {
@@ -25,6 +26,7 @@ body {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 2px;
+  background-color: #fff;
 }
 
 .header, .footer {
@@ -61,8 +63,28 @@ body {
   }
 }
 
+.bar {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+
+  .score, .time {
+    margin-bottom: 7px;
+  }
+
+  .score {
+    margin-left: 5px;
+  }
+
+  .time {
+    margin-right: 5px;
+  }
+}
+
 .display {
   background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px;
 
   table {
     border-collapse: collapse;

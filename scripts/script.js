@@ -32,9 +32,13 @@ window.onload = function () {
         return this.x === otherPixel.x && this.y === otherPixel.y;
     };
 
-    var clear = function () {
+    var clean = function () {
         var get = document.querySelectorAll('.display table td.show');
         for (var i = 0; i < get.length; i++) get[i].className = '';
+    };
+
+    var scoreUpdate = function () {
+        document.querySelector('.score span').innerHTML = score.toString();
     };
 
     /**
@@ -52,6 +56,7 @@ window.onload = function () {
 
     Egg.prototype.move = function () {
         this.position = new Pixel(random(size.x - 1), random(size.y - 1));
+        scoreUpdate();
     };
 
     var Snake = function () {
@@ -76,14 +81,17 @@ window.onload = function () {
 
         this.direction = this.nextDirection;
 
-        if (this.direction === 'right')
+        if (this.direction === 'right') {
             nextStep = new Pixel(head.x + 1, head.y);
-        else if (this.direction === 'down')
+        } else if (this.direction === 'down') {
             nextStep = new Pixel(head.x, head.y + 1);
-        else if (this.direction === 'left')
+        }
+        else if (this.direction === 'left') {
             nextStep = new Pixel(head.x - 1, head.y);
-        else if (this.direction === 'up')
+        }
+        else if (this.direction === 'up') {
             nextStep = new Pixel(head.x, head.y - 1);
+        }
 
         if (this.fail(nextStep)) {
             //   end();
@@ -145,7 +153,7 @@ window.onload = function () {
     var egg = new Egg();
 
     var intervalId = setInterval(function () {
-        clear();
+        clean();
         snake.move();
         snake.draw();
         egg.draw();
