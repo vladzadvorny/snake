@@ -41,10 +41,7 @@ window.onload = function () {
         document.querySelector('.score span').innerHTML = score.toString();
     };
 
-    /**
-     *
-     * @constructor
-     */
+
     var Egg = function () {
         this.position = new Pixel(random(size.x - 1), random(size.y - 1));
         // проверку на совпадение
@@ -103,6 +100,7 @@ window.onload = function () {
         if (nextStep.equal(egg.position)) {
             score++;
             egg.move();
+            window.navigator.vibrate(40);
         } else {
             this.body.pop();
         }
@@ -111,6 +109,7 @@ window.onload = function () {
     Snake.prototype.fail = function (head) {
         // left | top | right | bottom
         var wallFail = (head.x + 1 === 0) || (head.y + 1 === 0) || (head.x === size.x) || (head.y === size.y);
+
         var selfFail = false;
         for (var i = 0; i < this.body.length; i++) {
             if (head.equal(this.body[i])) {
@@ -158,18 +157,19 @@ window.onload = function () {
         if (newDirection !== undefined) snake.setDirection(newDirection);
     };
 
-    document.querySelector('.left-btn').addEventListener('touchstart', function(){
-        snake.setDirection('left');
-    }, false);
-    document.querySelector('.up-btn').addEventListener('touchstart', function(){
-        snake.setDirection('up');
-    }, false);
-    document.querySelector('.right-btn').addEventListener('touchstart', function(){
-        snake.setDirection('right');
-    }, false);
-    document.querySelector('.down-btn').addEventListener('touchstart', function(){
-        snake.setDirection('down');
-    }, false);
+    var joystick = document.querySelectorAll('.left-btn, .up-btn, .right-btn, .down-btn');
+    var f;
+    for (var i = 0; i < joystick.length; i++) {
+        joystick[i].addEventListener('touchstart', function(){
+            var direction = this.className.toString().replace(/-btn/g, '');
+            snake.setDirection(direction);
+            this.classList.toggle('btn-active');
+        }, false);
+
+        joystick[i].addEventListener('touchend', function(){
+            this.classList.toggle('btn-active');
+        }, false);
+    }
 
     var snake = new Snake();
     var egg = new Egg();
@@ -180,5 +180,4 @@ window.onload = function () {
         snake.draw();
         egg.draw();
     }, 200);
-
 };
