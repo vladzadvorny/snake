@@ -109,7 +109,6 @@ window.onload = function () {
     Snake.prototype.fail = function (head) {
         // left | top | right | bottom
         var wallFail = (head.x + 1 === 0) || (head.y + 1 === 0) || (head.x === size.x) || (head.y === size.y);
-
         var selfFail = false;
         for (var i = 0; i < this.body.length; i++) {
             if (head.equal(this.body[i])) {
@@ -180,5 +179,4 @@ window.onload = function () {
         snake.draw();
         egg.draw();
     }, 200);
-    
 };
