@@ -180,4 +180,5 @@ window.onload = function () {
         snake.draw();
         egg.draw();
     }, 200);
+    
 };
