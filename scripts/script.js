@@ -19,8 +19,8 @@ window.onload = function () {
     };
 
     var Pixel = function (x, y) {
-        this.x = x;
-        this.y = y;
+        this.x = x || 0;
+        this.y = y || 0;
     };
 
 
@@ -35,7 +35,7 @@ window.onload = function () {
 
     var clean = function () {
         var get = document.querySelectorAll('.display table td.show');
-        for (var i = 0; i < get.length; i++) get[i].className = '';
+        for (var i = 0; i < get.length; i++) get[i].classList.remove('show');
     };
 
     var scoreUpdate = function () {
@@ -44,8 +44,7 @@ window.onload = function () {
 
 
     var Egg = function () {
-        this.position = new Pixel(random(size.x - 1), random(size.y - 1));
-        // проверку на совпадение
+        this.position = new Pixel();
     };
 
     Egg.prototype.draw = function () {
@@ -53,8 +52,16 @@ window.onload = function () {
     };
 
     Egg.prototype.move = function () {
-        this.position = new Pixel(random(size.x - 1), random(size.y - 1));
-        scoreUpdate();
+        top:
+            do {
+                this.position = new Pixel(random(size.x - 1), random(size.y - 1));
+
+                for (var i = 0; i < snake.body.length; i++) {
+                    if (snake.body[i].x !== this.position.x || snake.body[i].y !== this.position.y) {
+                        break top;
+                    }
+                }
+            } while (true);
     };
 
     var end = function () {
@@ -74,8 +81,9 @@ window.onload = function () {
     };
 
     Snake.prototype.draw = function () {
-        for (var i = 0; i < this.body.length; i++)
+        for (var i = 0; i < this.body.length; i++) {
             this.body[i].show();
+        }
     };
 
     Snake.prototype.move = function () {
@@ -105,6 +113,7 @@ window.onload = function () {
 
         if (nextStep.equal(egg.position)) {
             score++;
+            scoreUpdate();
             egg.move();
             window.navigator.vibrate(40);
         } else {
@@ -163,21 +172,22 @@ window.onload = function () {
     };
 
     var joystick = document.querySelectorAll('.left-btn, .up-btn, .right-btn, .down-btn');
-    var f;
+
     for (var i = 0; i < joystick.length; i++) {
-        joystick[i].addEventListener('touchstart', function(){
+        joystick[i].addEventListener('touchstart', function () {
             var direction = this.className.toString().replace(/-btn/g, '');
             snake.setDirection(direction);
             this.classList.toggle('btn-active');
         }, false);
 
-        joystick[i].addEventListener('touchend', function(){
+        joystick[i].addEventListener('touchend', function () {
             this.classList.toggle('btn-active');
         }, false);
     }
 
     var snake = new Snake();
     var egg = new Egg();
+    egg.move();
 
     var intervalId = setInterval(function () {
         clean();
