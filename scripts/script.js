@@ -23,6 +23,7 @@ window.onload = function () {
         this.y = y;
     };
 
+
     Pixel.prototype.show = function () {
         document.querySelector('.display table tr:nth-child(' + (this.y + 1) + ')'
             + ' td:nth-child(' + (this.x + 1) + ')').classList.add('show');
@@ -54,6 +55,11 @@ window.onload = function () {
     Egg.prototype.move = function () {
         this.position = new Pixel(random(size.x - 1), random(size.y - 1));
         scoreUpdate();
+    };
+
+    var end = function () {
+        clearInterval(intervalId);
+        document.querySelector('.gameover').style.display = 'block';
     };
 
     var Snake = function () {
@@ -91,7 +97,7 @@ window.onload = function () {
         }
 
         if (this.fail(nextStep)) {
-            //   end();
+            end();
             return;
         }
 

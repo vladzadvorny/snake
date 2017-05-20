@@ -66,7 +66,11 @@ body {
 .display {
   background-color: #fff;
   border: 1px solid #ddd;
-  padding: 5px; }
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
   .display table {
     border-collapse: collapse;
     margin: auto;
@@ -87,6 +91,18 @@ body {
       padding-top: 100%; }
     .display table td.show {
       background-color: #9acd32; }
+  .display .gameover {
+    z-index: 100;
+    position: absolute;
+    color: #9acd32;
+    border-radius: 4px;
+    display: none; }
+    .display .gameover:before {
+      background-color: #fff;
+      content: "GAME OVER";
+      font-size: 50px;
+      font-weight: bold;
+      padding: 1px 5px; }
 
 .joystick {
   display: none;
@@ -188,6 +204,8 @@ body {
 
   .display {
     padding: 3px; }
+    .display .gameover:before {
+      font-size: 2.5em; }
 
   .joystick {
     display: flex; } }
