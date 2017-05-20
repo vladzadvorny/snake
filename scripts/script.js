@@ -53,15 +53,15 @@ window.onload = function () {
 
     Egg.prototype.move = function () {
         top:
-            do {
-                this.position = new Pixel(random(size.x - 1), random(size.y - 1));
+        do {
+            this.position = new Pixel(random(size.x - 1), random(size.y - 1));
 
-                for (var i = 0; i < snake.body.length; i++) {
-                    if (snake.body[i].x !== this.position.x || snake.body[i].y !== this.position.y) {
-                        break top;
-                    }
+            for (var i = 0; i < snake.body.length; i++) {
+                if (snake.body[i].x !== this.position.x || snake.body[i].y !== this.position.y) {
+                    break top;
                 }
-            } while (true);
+            }
+        } while (true);
     };
 
     var end = function () {
