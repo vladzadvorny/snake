@@ -23,7 +23,6 @@ window.onload = function () {
         this.y = y || 0;
     };
 
-
     Pixel.prototype.show = function () {
         document.querySelector('.display table tr:nth-child(' + (this.y + 1) + ')'
             + ' td:nth-child(' + (this.x + 1) + ')').classList.add('show');
@@ -52,16 +51,21 @@ window.onload = function () {
     };
 
     Egg.prototype.move = function () {
-        top:
-        do {
-            this.position = new Pixel(random(size.x - 1), random(size.y - 1));
-
+        var newPosition;
+        var isSnake = function (newPosition) {
             for (var i = 0; i < snake.body.length; i++) {
-                if (snake.body[i].x !== this.position.x || snake.body[i].y !== this.position.y) {
-                    break top;
+                if (newPosition.equal(snake.body[i])) {
+                    return true;
                 }
             }
-        } while (true);
+            return false;
+        };
+
+        do {
+            newPosition = new Pixel(random(size.x - 1), random(size.y - 1));
+        } while (isSnake(newPosition));
+
+        this.position = newPosition;
     };
 
     var end = function () {
