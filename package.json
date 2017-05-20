@@ -6,12 +6,8 @@
   },
   "author": "Vlad Zadvorny<vladzadvorny@icloud.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vladzadvorny/snake/issues"
-  },
   "homepage": "https://vladzadvorny.github.io/snake",
-  "devDependencies": {
-    "browser-sync": "^2.18.11",
-    "gulp": "^3.9.1"
+  "scripts": {
+    "serve": "browser-sync start --server --files '*.html, styles/*.css, scripts/*.js'"
   }
 }
