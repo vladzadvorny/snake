@@ -154,25 +154,21 @@ window.onload = function () {
         this.nextDirection = newDirection;
     };
 
+    var keyCodes = {
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down"
+    };
+
     document.body.focus();
     document.body.onkeydown = function (e) {
         e = e || window.event;
-        var newDirection;
+        var newDirection = keyCodes[e.keyCode];
 
-        if (e.keyCode === 37 || e.keyCode === 65) {
-            newDirection = 'left';
+        if (newDirection !== undefined) {
+            snake.setDirection(newDirection);
         }
-        else if (e.keyCode === 38 || e.keyCode === 87) {
-            newDirection = 'up';
-        }
-        else if (e.keyCode === 39 || e.keyCode === 68) {
-            newDirection = 'right';
-        }
-        else if (e.keyCode === 40 || e.keyCode === 83) {
-            newDirection = 'down';
-        }
-
-        if (newDirection !== undefined) snake.setDirection(newDirection);
     };
 
     var joystick = document.querySelectorAll('.left-btn, .up-btn, .right-btn, .down-btn');
