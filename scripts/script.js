@@ -193,11 +193,11 @@ window.onload = function () {
         }
     };
 
-    var joystick = document.querySelectorAll('.left-btn, .up-btn, .right-btn, .down-btn');
+    var joystick = document.querySelectorAll('.btn');
 
     for (var i = 0; i < joystick.length; i++) {
         joystick[i].addEventListener('touchstart', function () {
-            var direction = this.className.toString().replace(/-btn/g, '');
+            var direction = this.getAttribute('data-direction');
             snake.setDirection(direction);
             this.classList.toggle('btn-active');
         }, false);

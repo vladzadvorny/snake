@@ -141,15 +141,12 @@ body {
       font-size: 50px;
       font-weight: bold;
       padding: 1px 5px;
-
     }
   }
-
 }
 
 .joystick {
   display: none;
-
   flex-direction: column;
   padding: 10px 0;
 
@@ -157,7 +154,6 @@ body {
     display: flex;
     justify-content: space-around;
     margin-bottom: -7px;
-
   }
 
   .middle {
@@ -172,7 +168,7 @@ body {
     margin-top: -7px;
   }
 
-  .left-btn, .right-btn, .up-btn, .down-btn {
+  .btn {
     background-color: $primary-color;
     border-radius: 50%;
     height: 65px;
@@ -201,7 +197,6 @@ body {
     padding: 0 10px;
     background: linear-gradient(to top, lighten($primary-color, 10%), $primary-color);
     height: 53px;
-    // display: none;
 
     a.logo {
       color: #ffffef;

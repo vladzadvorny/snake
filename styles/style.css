@@ -121,7 +121,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin-top: -7px; }
-  .joystick .left-btn, .joystick .right-btn, .joystick .up-btn, .joystick .down-btn {
+  .joystick .btn {
     background-color: #9acd32;
     border-radius: 50%;
     height: 65px;
