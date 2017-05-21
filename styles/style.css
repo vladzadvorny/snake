@@ -32,7 +32,8 @@ body {
   align-items: center; }
 
 .header {
-  border-top: 0; }
+  border-top: 0;
+  justify-content: space-between; }
   .header a.logo {
     color: #999;
     text-decoration: none; }
@@ -98,7 +99,7 @@ body {
     border-radius: 4px;
     display: none; }
     .display .gameover:before {
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.65);
       content: "GAME OVER";
       font-size: 50px;
       font-weight: bold;
@@ -131,6 +132,8 @@ body {
     font-weight: bold;
     font-size: 18px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
+  .joystick .btn-active {
+    background-color: #d7ebad; }
 
 @media only screen and (max-device-width: 700px) {
   .header, .main, .footer {
@@ -139,57 +142,9 @@ body {
     border: 0; }
 
   .header {
-    background-color: #9acd32; }
-
-  .footer {
-    display: none; }
-
-  .bar {
-    font-size: 16px; }
-
-  .display {
-    padding-left: 3px;
-    padding-right: 3px; } }
-.joystick {
-  display: none;
-  flex-direction: column;
-  padding: 10px 0; }
-  .joystick .top {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: -7px; }
-  .joystick .middle {
-    display: flex;
-    justify-content: space-around;
-    padding: 0 30px; }
-  .joystick .bottom {
-    display: flex;
-    justify-content: space-around;
-    margin-top: -7px; }
-  .joystick .left-btn, .joystick .right-btn, .joystick .up-btn, .joystick .down-btn {
-    background-color: #9acd32;
-    border-radius: 50%;
-    height: 67px;
-    width: 67px;
-    line-height: 69px;
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
-  .joystick .btn-active {
-    background-color: #d7ebad; }
-
-@media only screen and (max-device-width: 700px) {
-  .header, .main, .footer {
-    margin-bottom: 0;
-    padding: 0;
-    border: 0; }
-
-  .header {
+    padding: 0 10px;
     background: linear-gradient(to top, #aed75b, #9acd32);
-    height: 53px;
-    justify-content: space-around; }
+    height: 53px; }
     .header a.logo {
       color: #ffffef; }
 
