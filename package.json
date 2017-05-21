@@ -8,6 +8,6 @@
   "license": "ISC",
   "homepage": "https://vladzadvorny.github.io/snake",
   "scripts": {
-    "serve": "browser-sync start --server --files '*.html, styles/*.css, scripts/*.js'"
+    "start": "browser-sync start --server --files '*.html, styles/*.css, scripts/*.js'"
   }
 }

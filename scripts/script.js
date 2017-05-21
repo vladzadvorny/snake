@@ -70,6 +70,7 @@ window.onload = function () {
 
     var end = function () {
         clearInterval(intervalId);
+        timer.stop();
         document.querySelector('.gameover').style.display = 'block';
     };
 
@@ -154,6 +155,27 @@ window.onload = function () {
         this.nextDirection = newDirection;
     };
 
+    var Timer = function () {
+        this.sec = 0;
+    };
+
+    Timer.prototype.start = function () {
+        var self = this;
+        var format = function (num) {
+            return (num < 10 ) ? '0' + num : num;
+        };
+
+        this.setInterval = setInterval(function () {
+            self.sec++;
+            document.querySelector('.time span').innerHTML =
+                format(Math.floor(self.sec / 60)) + ':' + format(self.sec % 60);
+        }, 1000);
+    };
+
+    Timer.prototype.stop = function () {
+        clearInterval(this.setInterval);
+    };
+
     var keyCodes = {
         37: "left",
         38: "up",
@@ -188,6 +210,8 @@ window.onload = function () {
     var snake = new Snake();
     var egg = new Egg();
     egg.move();
+    var timer = new Timer();
+    timer.start();
 
     var intervalId = setInterval(function () {
         clean();
