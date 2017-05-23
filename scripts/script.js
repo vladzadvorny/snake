@@ -1,5 +1,5 @@
 window.onload = function () {
-    var size = {x: 33, y: 20};
+    var size = {x: 30, y: 18};
     var score = 0;
 
     // Draw display
@@ -69,7 +69,7 @@ window.onload = function () {
     };
 
     var end = function () {
-        clearInterval(intervalId);
+        interval.stop();
         timer.stop();
         document.querySelector('.gameover').style.display = 'block';
     };
@@ -213,10 +213,36 @@ window.onload = function () {
     var timer = new Timer();
     timer.start();
 
-    var intervalId = setInterval(function () {
-        clean();
-        snake.move();
-        snake.draw();
-        egg.draw();
-    }, 200);
+    var Interval = function () {
+        this._interval = null;
+    };
+
+    Interval.prototype.start = function () {
+        this._interval = setInterval(function () {
+            clean();
+            snake.move();
+            snake.draw();
+            egg.draw();
+        }, 200);
+    };
+
+    Interval.prototype.stop = function () {
+        clearInterval(this._interval);
+        timer.stop();
+    };
+
+    var interval = new Interval();
+    interval.start();
+
+    document.querySelector('.restart').onclick = function () {
+        interval.stop();
+        // interval = new Interval();
+        snake = new Snake();
+        egg = new Egg();
+        egg.move();
+        timer = new Timer();
+        timer.start();
+        document.querySelector('.gameover').style.display = 'none';
+        interval.start();
+    }
 };
