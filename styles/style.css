@@ -1,3 +1,23 @@
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.glyphicon-play:before {
+  content: "\e072"; }
+
+.glyphicon-pause:before {
+  content: "\e073"; }
+
+.glyphicon-repeat:before {
+  content: "\e030"; }
+
 * {
   margin: 0;
   padding: 0;
@@ -39,14 +59,17 @@ body {
     text-decoration: none; }
   .header a.logo h1 {
     font-size: 20px; }
-  .header .restart {
-    border: 1px solid #9acd32;
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: #9acd32;
-    cursor: pointer; }
-    .header .restart:hover {
-      background-color: #f5faeb; }
+  .header .buttons {
+    display: flex; }
+    .header .buttons .play-pause, .header .buttons .restart {
+      border: 1px solid #9acd32;
+      padding: 5px 10px;
+      margin-left: 10px;
+      border-radius: 4px;
+      color: #9acd32;
+      cursor: pointer; }
+      .header .buttons .play-pause:hover, .header .buttons .restart:hover {
+        background-color: #f5faeb; }
 
 .main {
   flex-grow: 1;
@@ -143,6 +166,10 @@ body {
   .joystick .btn-active {
     background-color: #d7ebad; }
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("../fonts/glyphicons-halflings-regular.eot");
+  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
 @media only screen and (max-device-width: 700px) {
   .header, .main, .footer {
     margin-bottom: 0;
