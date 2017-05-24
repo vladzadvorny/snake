@@ -234,9 +234,11 @@ window.onload = function () {
     var interval = new Interval();
     interval.start();
 
-    document.querySelector('.restart').onclick = function () {
+     function restart() {
         interval.stop();
-        // interval = new Interval();
+        interval = new Interval();
+        score = 0;
+        scoreUpdate();
         snake = new Snake();
         egg = new Egg();
         egg.move();
@@ -245,4 +247,25 @@ window.onload = function () {
         document.querySelector('.gameover').style.display = 'none';
         interval.start();
     }
+
+    var flag = true;
+     function playPause() {
+        var child = this.children[0];
+        if (flag) {
+            interval.stop();
+            timer.stop();
+            child.classList.remove('glyphicon-pause');
+            child.classList.add('glyphicon-play');
+            flag = false;
+        } else {
+            interval.start();
+            timer.start();
+            child.classList.remove('glyphicon-play');
+            child.classList.add('glyphicon-pause');
+            flag = true;
+        }
+    }
+
+    document.querySelector('.restart').onclick = restart;
+    document.querySelector('.play-pause').onclick = playPause;
 };
