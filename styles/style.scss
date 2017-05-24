@@ -250,16 +250,19 @@ body {
       color: #ffffef;
     }
 
-    .restart {
-      border: 1px solid #fff;
-      background-color: darken($primary-color, 1%);
-      padding: 3px 5px;
-      border-radius: 4px;
-      font-size: 14px;
-      color: #fff;
+    .buttons {
+      .play-pause, .restart {
+        border: 1px solid #fff;
+        background-color: darken($primary-color, 1%);
+        padding: 6px 8px 4px 8px;
+        margin-left: 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        color: #fff;
 
-      &:active, &:hover {
-        background-color: $primary-color;
+        &:active, &:hover {
+          background-color: $primary-color;
+        }
       }
     }
   }

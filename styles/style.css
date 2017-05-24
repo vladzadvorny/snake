@@ -182,14 +182,15 @@ body {
     height: 53px; }
     .header a.logo {
       color: #ffffef; }
-    .header .restart {
+    .header .buttons .play-pause, .header .buttons .restart {
       border: 1px solid #fff;
       background-color: #97c931;
-      padding: 3px 5px;
+      padding: 6px 8px 4px 8px;
+      margin-left: 20px;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 16px;
       color: #fff; }
-      .header .restart:active, .header .restart:hover {
+      .header .buttons .play-pause:active, .header .buttons .play-pause:hover, .header .buttons .restart:active, .header .buttons .restart:hover {
         background-color: #9acd32; }
 
   .main {

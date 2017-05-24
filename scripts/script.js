@@ -236,6 +236,7 @@ window.onload = function () {
 
      function restart() {
         interval.stop();
+        interval = null;
         interval = new Interval();
         score = 0;
         scoreUpdate();
@@ -253,11 +254,13 @@ window.onload = function () {
         var child = this.children[0];
         if (flag) {
             interval.stop();
+            interval = null;
             timer.stop();
             child.classList.remove('glyphicon-pause');
             child.classList.add('glyphicon-play');
             flag = false;
         } else {
+            interval = new Interval();
             interval.start();
             timer.start();
             child.classList.remove('glyphicon-play');
