@@ -176,7 +176,8 @@ window.onload = function () {
         clearInterval(this.setInterval);
     };
 
-    var keyCodes = {
+    var keyNames = {
+        32: "space",
         37: "left",
         38: "up",
         39: "right",
@@ -186,10 +187,14 @@ window.onload = function () {
     document.body.focus();
     document.body.onkeydown = function (e) {
         e = e || window.event;
-        var newDirection = keyCodes[e.keyCode];
+        var keyName = keyNames[e.keyCode];
 
-        if (newDirection !== undefined) {
-            snake.setDirection(newDirection);
+        if (keyName !== undefined) {
+            if (keyName === 'space') {
+                playPause();
+            } else {
+                snake.setDirection(keyName);
+            }
         }
     };
 
@@ -234,7 +239,10 @@ window.onload = function () {
     var interval = new Interval();
     interval.start();
 
-     function restart() {
+    function restart() {
+        playPause();
+        flag = true;
+
         interval.stop();
         interval = null;
         interval = new Interval();
@@ -250,8 +258,8 @@ window.onload = function () {
     }
 
     var flag = true;
-     function playPause() {
-        var child = this.children[0];
+    function playPause() {
+        var child = document.querySelector('.play-pause').children[0];
         if (flag) {
             interval.stop();
             interval = null;
